@@ -1,0 +1,20 @@
+
+### ✍️ Примерно съдържание:
+
+```gitignore
+# Компилирани файлове
+*.o
+*.exe
+*.out
+
+# CMake/Make временно генерирани файлове
+CMakeCache.txt
+CMakeFiles/
+Makefile
+build/
+cmake_install.cmake
+
+# Други временни файлове
+*.log
+*.tmp
+*.bak
