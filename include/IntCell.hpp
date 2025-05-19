@@ -10,6 +10,7 @@ public:
     IntCell& operator=(const IntCell& other);
     IntCell(const IntCell& other);
 
+    ColumnType getType() const override;
     std::string toString() const override;
     Cell* clone() const override;
 };

@@ -11,6 +11,7 @@ public:
     StringCell(const StringCell& other);
     StringCell& operator=(const StringCell& other);
 
+    ColumnType getType() const override;
     std::string toString() const override;
     Cell* clone() const override;
 };

@@ -14,6 +14,10 @@ IntCell& IntCell::operator=(const IntCell& other) {
     return *this;
 }
 
+ColumnType IntCell::getType() const{
+    return ColumnType::Int;
+}
+
 std::string IntCell::toString() const {
     return std::to_string(value);
 }

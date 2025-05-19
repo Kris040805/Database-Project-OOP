@@ -13,6 +13,10 @@ DoubleCell& DoubleCell::operator=(const DoubleCell& other) {
     return *this;
 }
 
+ColumnType DoubleCell::getType() const{
+    return ColumnType::Double;
+}
+
 std::string DoubleCell::toString() const {
     return std::to_string(value);
 }

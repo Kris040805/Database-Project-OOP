@@ -36,8 +36,19 @@ void cmdInsert(const std::vector<std::string>& args, Table& table){
     }
 
     Row row;
-    for (const std::string& arg : args) {
-        row.addCell(createCellFromStr(arg));
+    for (size_t i = 0; i < args.size(); i++)
+    {
+        Cell* cell = createCellFromStr(args[i]);
+
+        ColumnType expectType = table.getColumntType(i);
+        
+        if (cell->getType() != ColumnType::Null && cell->getType() != expectType)
+        {
+            delete cell;
+            throw std::invalid_argument("Error: value \"" + args[i] + "\" does not match the type of column \"" + table.getColumnName(i) + "\".");
+        }
+        
+        row.addCell(cell);
     }
 
     table.insertRow(row);

@@ -1,4 +1,5 @@
 #include "Table.hpp"
+#include <stdexcept>
 
 Table::Table() {}
 
@@ -37,6 +38,23 @@ size_t Table::getRowCount() const{
 
 size_t Table::getColumnCount() const{
     return columnNames.size();
+}
+
+ColumnType Table::getColumntType(size_t index) const{
+    //Няма значение дали ще взимаме размера на columnNames или columnTypes - и на двете е еднакво
+    if (index >= columnNames.size())
+    {
+        throw std::out_of_range("Column index out of bounds.");
+    }
+    return columnTypes[index];
+}
+
+const std::string& Table::getColumnName(size_t index) const{
+    if (index >= columnNames.size())
+    {
+        throw std::out_of_range("Column index out of bounds.");
+    }
+    return columnNames[index];
 }
 
 std::string Table::toString() const{

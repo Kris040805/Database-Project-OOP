@@ -12,6 +12,11 @@ StringCell& StringCell::operator=(const StringCell& other) {
     }
     return *this;
 }
+
+ColumnType StringCell::getType() const{
+    return ColumnType::String;
+}
+
 std::string StringCell::toString() const {
     return str;
 }

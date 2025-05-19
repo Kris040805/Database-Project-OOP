@@ -2,6 +2,10 @@
 #include "NullCell.hpp"
 #include <string>
 
+ColumnType NullCell::getType() const{
+    return ColumnType::Null;
+}
+
 std::string NullCell::toString() const {
     return "NULL";
 }

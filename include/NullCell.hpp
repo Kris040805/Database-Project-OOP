@@ -5,6 +5,7 @@
 class NullCell : public Cell {
 public:
     NullCell() = default;
+    ColumnType getType() const override;
     std::string toString() const override;
     Cell* clone() const override;
 };
