@@ -19,16 +19,16 @@ void Table::addColumn(const std::string& colName, ColumnType colType){
 
     for (size_t i = 0; i < rows.size(); i++)
     {
-        rows[i]->addCell(new NullCell());
+        rows[i].addCell(new NullCell());
     }
 }
 
-void Table::insertRow(Row* row){
+void Table::insertRow(const Row& row){
     rows.push_back(row);
 }
 
 const Row& Table::getRow(size_t index) const{
-    return *rows[index];
+    return rows[index];
 }
 
 size_t Table::getRowCount() const{
@@ -55,7 +55,7 @@ std::string Table::toString() const{
 
     for (size_t i = 0; i < rows.size(); i++)
     {
-        result += rows[i]->toString();
+        result += rows[i].toString();
         result += "\n";
     }
     
