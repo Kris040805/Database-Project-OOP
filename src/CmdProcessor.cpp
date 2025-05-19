@@ -5,6 +5,7 @@
 
 void CmdProcessor::processCommands(const std::string& input, Table& table){
     std::vector<std::string> args = splitArgs(input);
+    
     if (args.empty())
     {
         return;
