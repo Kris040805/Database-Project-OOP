@@ -23,7 +23,7 @@ void CmdProcessor::processCommands(const std::string& input, Database& database)
     } else if (cmd == "print")
     {
         cmdPrint(args, database);
-    } else if (cmd == "addColumn")
+    } else if (cmd == "addcolumn")
     {
         cmdAddColumn(args, database);
     } else {
