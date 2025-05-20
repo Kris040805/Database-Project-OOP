@@ -57,6 +57,17 @@ const std::string& Table::getColumnName(size_t index) const{
     return columnNames[index];
 }
 
+size_t Table::getColumnIndex(const std::string& colName) const{
+    for (size_t i = 0; i < columnNames.size(); i++)
+    {
+        if (columnNames[i] == colName)
+        {
+            return i;
+        }
+    }
+    throw std::invalid_argument("Column \"" + colName + "\" does not exist.");
+}
+
 std::string Table::toString() const{
     std::string result;
 

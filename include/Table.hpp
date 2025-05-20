@@ -26,5 +26,6 @@ public:
     size_t getColumnCount() const;
     ColumnType getColumnType(size_t index) const;
     const std::string& getColumnName(size_t index) const;
+    size_t getColumnIndex(const std::string& colName) const;
     std::string toString() const;
 };
