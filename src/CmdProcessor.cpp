@@ -23,6 +23,9 @@ void CmdProcessor::processCommands(const std::string& input, Database& database)
     } else if (cmd == "print")
     {
         cmdPrint(args, database);
+    } else if (cmd == "addColumn")
+    {
+        cmdAddColumn(args, database);
     } else {
         throw std::invalid_argument("Unknown command:" + cmd);
     }
@@ -203,3 +206,32 @@ void CmdProcessor::cmdPrint(const std::vector<std::string>& args, Database& data
         }
     }
 }
+
+void cmdAddColumn(const std::vector<std::string>& args, Database& database){
+    if (args.size() != 3)
+    {
+        throw std::invalid_argument("Incorrect arguments for command \"addColumn\".");
+    }
+
+    const std::string& tabName = args[0];
+    const std::string& colName = args[1];
+    const std::string& colTypeStr = args[2];
+
+    if (!database.hasTable(tabName))
+    {
+        throw std::invalid_argument("Table \"" + tabName + "\" does not exist.");
+    }
+
+    ColumnType colType = parseColType(colTypeStr);
+    if (colType == ColumnType::Null)
+    {
+        throw std::invalid_argument("Invalid column type: " + colTypeStr);
+    }
+    
+    Table& tab = database.getTableByName(tabName);
+    tab.addColumn(colName, colType);
+    std::cout << "Column \"" + colName + "\" of type \"" + colTypeStr + "\" added to table \"" + tabName + "\"." << std::endl;
+}
+
+
+
