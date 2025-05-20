@@ -3,7 +3,13 @@
 #include "DoubleCell.hpp"
 #include "StringCell.hpp"
 #include "NullCell.hpp"
+#include "Row.hpp"
+#include "Table.hpp"
 #include <cctype>
+#include <vector>
+#include <iostream>
+
+
 
 bool isInteger(const std::string& str){
     if (str.empty())
@@ -97,4 +103,86 @@ Cell* createCellFromStr(const std::string& str){
     }
 
     return new NullCell();
+}
+
+void printRowsPaged(const std::vector<const Row*>& rows, const Table& tab, const std::string& title){
+    const size_t rowsPerPage = 10;
+    size_t currentPage = 0;
+    size_t totalPages = (rows.size() + rowsPerPage - 1) / rowsPerPage;
+
+    std::string input;
+
+    while (true)
+    {
+        //От интернет
+        #ifdef _WIN32
+            system("cls");
+        #else
+            system("clear");
+        #endif
+        
+        std::cout << "~~~ " << title << " | Page " << (currentPage + 1) 
+                  << " of " << (totalPages == 0 ? 1 : totalPages) << " ~~~\n\n";
+        
+        //Принтиране на имена на колоните
+        std::cout << "№ | ";
+        for (size_t i = 0; i < tab.getColumnCount(); i++)
+        {
+            std::cout << tab.getColumnName(i);
+            if (i < tab.getColumnCount() - 1)
+            {
+                std::cout << " | ";
+            }
+        }
+        std::cout << std::endl;
+
+        //Принтиране на редовете
+        size_t start = currentPage * rowsPerPage;
+        size_t end = std::min(start + rowsPerPage, rows.size());
+
+        for (size_t i = start; i < end; i++)
+        {
+            std::cout << i + 1 << ". " << rows[i]->toString() << std::endl;
+        }
+        std::cout << std::endl;
+        
+        while (true)
+        {
+            std::cout << "[n]ext, [p]revious, [e]xit";
+            std::getline(std::cin, input);
+
+            if (input == "n" || input == "next")
+            {
+                if (currentPage < totalPages - 1)
+                {
+                    currentPage++;
+                }
+                else
+                {
+                    std::cout << "You are already on the last page." << std::endl;
+                }
+                break;
+            }
+            else if (input == "p" || input == "previous")
+            {
+                if (currentPage > 0)
+                {
+                    currentPage--;
+                }
+                else
+                {
+                    std::cout << "You are already on the first page." << std::endl;
+                }
+                break;
+            }
+            else if (input == "e" || input == "exit")
+            {
+                return;
+            }
+            else
+            {
+                std::cout << "Invalid input. Please enter next, prev or exit." << std::endl;
+            }
+        }
+    }
 }

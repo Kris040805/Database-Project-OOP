@@ -9,3 +9,5 @@ bool isString(const std::string& str);
 std::string decodeEscapedStr(const std::string& str);
 
 Cell* createCellFromStr(const std::string& str);
+
+void printRowsPaged(const std::vector<const Row*>& rows, const Table& table, const std::string& title);

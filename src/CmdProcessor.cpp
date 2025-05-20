@@ -125,86 +125,95 @@ void CmdProcessor::cmdPrint(const std::vector<std::string>& args, Database& data
         return;
     }
 
-    const size_t rowsPerPage = 10;
-    size_t currentPage = 0;
-    size_t totalPages = (tab.getRowCount() + rowsPerPage - 1) / rowsPerPage;
-    size_t rowCount = tab.getRowCount();
-
-    std::string input;
-
-    while (true)
+    std::vector<const Row*> rows;
+    for (size_t i = 0; i < tab.getRowCount(); i++)
     {
-        //От интернет
-        #ifdef _WIN32
-            system("cls");
-        #else
-            system("clear");
-        #endif
-        
-        std::cout << "~~~ Table: " << tabName << " | " 
-                 << "Page: " << (currentPage + 1) << " of " << (totalPages == 0 ? 1 : totalPages) << " ~~~\n\n";
-        
-        //Принтиране на имена на колоните
-        std::cout << "№ | ";
-        for (size_t i = 0; i < tab.getColumnCount(); i++)
-        {
-            std::cout << tab.getColumnName(i);
-            if (i < tab.getColumnCount() - 1)
-            {
-                std::cout << " | ";
-            }
-        }
-        std::cout << std::endl;
-
-        //Принтиране на редовете
-        size_t start = currentPage * rowsPerPage;
-        size_t end = std::min(start + rowsPerPage, rowCount);
-
-        for (size_t i = start; i < end; i++)
-        {
-            std::cout << i + 1 << ". " << tab.getRow(i).toString() << std::endl;
-        }
-        std::cout << std::endl;
-        
-        while (true)
-        {
-            std::cout << "[n]ext, [p]revious, [e]xit";
-            std::getline(std::cin, input);
-
-            if (input == "n" || input == "next")
-            {
-                if (currentPage < totalPages - 1)
-                {
-                    currentPage++;
-                }
-                else
-                {
-                    std::cout << "You are already on the last page." << std::endl;
-                }
-                break;
-            }
-            else if (input == "p" || input == "previous")
-            {
-                if (currentPage > 0)
-                {
-                    currentPage--;
-                }
-                else
-                {
-                    std::cout << "You are already on the first page." << std::endl;
-                }
-                break;
-            }
-            else if (input == "e" || input == "exit")
-            {
-                return;
-            }
-            else
-            {
-                std::cout << "Invalid input. Please enter next, prev or exit." << std::endl;
-            }
-        }
+        rows.push_back(&tab.getRow(i));
     }
+    printRowsPaged(rows, tab, "Table: " + tabName);
+
+
+    // const size_t rowsPerPage = 10;
+    // size_t currentPage = 0;
+    // size_t totalPages = (tab.getRowCount() + rowsPerPage - 1) / rowsPerPage;
+    // size_t rowCount = tab.getRowCount();
+
+    // std::string input;
+
+    // while (true)
+    // {
+    //     //От интернет
+    //     #ifdef _WIN32
+    //         system("cls");
+    //     #else
+    //         system("clear");
+    //     #endif
+        
+    //     std::cout << "~~~ Table: " << tabName << " | " 
+    //              << "Page: " << (currentPage + 1) << " of " << (totalPages == 0 ? 1 : totalPages) << " ~~~\n\n";
+        
+    //     //Принтиране на имена на колоните
+    //     std::cout << "№ | ";
+    //     for (size_t i = 0; i < tab.getColumnCount(); i++)
+    //     {
+    //         std::cout << tab.getColumnName(i);
+    //         if (i < tab.getColumnCount() - 1)
+    //         {
+    //             std::cout << " | ";
+    //         }
+    //     }
+    //     std::cout << std::endl;
+
+    //     //Принтиране на редовете
+    //     size_t start = currentPage * rowsPerPage;
+    //     size_t end = std::min(start + rowsPerPage, rowCount);
+
+    //     for (size_t i = start; i < end; i++)
+    //     {
+    //         std::cout << i + 1 << ". " << tab.getRow(i).toString() << std::endl;
+    //     }
+    //     std::cout << std::endl;
+        
+    //     while (true)
+    //     {
+    //         std::cout << "[n]ext, [p]revious, [e]xit";
+    //         std::getline(std::cin, input);
+
+    //         if (input == "n" || input == "next")
+    //         {
+    //             if (currentPage < totalPages - 1)
+    //             {
+    //                 currentPage++;
+    //             }
+    //             else
+    //             {
+    //                 std::cout << "You are already on the last page." << std::endl;
+    //             }
+    //             break;
+    //         }
+    //         else if (input == "p" || input == "previous")
+    //         {
+    //             if (currentPage > 0)
+    //             {
+    //                 currentPage--;
+    //             }
+    //             else
+    //             {
+    //                 std::cout << "You are already on the first page." << std::endl;
+    //             }
+    //             break;
+    //         }
+    //         else if (input == "e" || input == "exit")
+    //         {
+    //             return;
+    //         }
+    //         else
+    //         {
+    //             std::cout << "Invalid input. Please enter next, prev or exit." << std::endl;
+    //         }
+    //     }
+    // }
+
 }
 
 void cmdAddColumn(const std::vector<std::string>& args, Database& database){
