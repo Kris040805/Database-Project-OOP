@@ -13,7 +13,7 @@ private:
     std::vector<std::string> splitArgs(const std::string& line);
     
     void cmdInsert(const std::vector<std::string>& args, Database& database);
-
+    void cmdPrint(const std::vector<std::string>& args, Database& database);
     
 
 };
