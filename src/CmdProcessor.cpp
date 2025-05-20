@@ -51,7 +51,7 @@ void CmdProcessor::cmdInsert(const std::vector<std::string>& args, Database& dat
     {
         Cell* cell = createCellFromStr(args[i + 1]);
 
-        ColumnType expectType = tab.getColumntType(i);
+        ColumnType expectType = tab.getColumnType(i);
         
         if (cell->getType() != ColumnType::Null && cell->getType() != expectType)
         {

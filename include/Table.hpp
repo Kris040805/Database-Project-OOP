@@ -24,7 +24,7 @@ public:
     const Row& getRow(size_t index) const;
     size_t getRowCount() const;
     size_t getColumnCount() const;
-    ColumnType getColumntType(size_t index) const;
+    ColumnType getColumnType(size_t index) const;
     const std::string& getColumnName(size_t index) const;
     std::string toString() const;
 };
