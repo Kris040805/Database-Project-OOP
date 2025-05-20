@@ -2,8 +2,9 @@
 #include "Utilities.hpp"
 #include <iostream>
 #include <stdexcept>
+#include <vector>
 
-void CmdProcessor::processCommands(const std::string& input, Table& table){
+void CmdProcessor::processCommands(const std::string& input, Database& database){
     std::vector<std::string> args = splitArgs(input);
     
     if (args.empty())
@@ -17,46 +18,56 @@ void CmdProcessor::processCommands(const std::string& input, Table& table){
 
     if (cmd == "insert")
     {
-        cmdInsert(args, table);
-    } 
-    else if (cmd == "print")
-    {
-        std::cout << table.toString();
-    }
-    else {
+        cmdInsert(args, database);
+    } else {
         throw std::invalid_argument("Unknown command:" + cmd);
     }
 
 }
 
-void cmdInsert(const std::vector<std::string>& args, Table& table){
-    if (args.size() != table.getColumnCount())
+
+void CmdProcessor::cmdInsert(const std::vector<std::string>& args, Database& database){
+    if (args.empty())
+    {
+        throw std::invalid_argument("Too few arguments.");
+    }
+    const std::string& tabName = args[0];
+    if (!database.hasTable(tabName))
+    {
+        throw std::invalid_argument("Table \"" + tabName + "\" does not exist.");
+    }
+    
+    Table& tab = database.getTableByName(tabName);
+
+    //-1 защото първият аргумент е името на таблицата
+    if ((args.size() - 1) != tab.getColumnCount())
     {
         throw std::invalid_argument("The number of values does not match the number of columns.");
     }
-
+    
     Row row;
-    for (size_t i = 0; i < args.size(); i++)
+    
+    for (size_t i = 0; i < tab.getColumnCount(); i++)
     {
-        Cell* cell = createCellFromStr(args[i]);
+        Cell* cell = createCellFromStr(args[i + 1]);
 
-        ColumnType expectType = table.getColumntType(i);
+        ColumnType expectType = tab.getColumntType(i);
         
         if (cell->getType() != ColumnType::Null && cell->getType() != expectType)
         {
             delete cell;
-            throw std::invalid_argument("Error: value \"" + args[i] + "\" does not match the type of column \"" + table.getColumnName(i) + "\".");
+            throw std::invalid_argument("Error: value \"" + args[i + 1] + "\" does not match the type of column \"" + tab.getColumnName(i) + "\".");
         }
         
         row.addCell(cell);
     }
 
-    table.insertRow(row);
+    tab.insertRow(row);
     std::cout << "The row is added successfully." << std::endl;
     
 }
 
-std::vector<std::string> splitArgs(const std::string& line){
+std::vector<std::string> CmdProcessor::splitArgs(const std::string& line){
     std::vector<std::string> result;
     std::string current;
     bool inQuotes = false;
