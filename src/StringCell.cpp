@@ -13,6 +13,20 @@ StringCell& StringCell::operator=(const StringCell& other) {
     return *this;
 }
 
+int StringCell::compare(const Cell& other) const
+{
+    if (other.getType() != ColumnType::String)
+    {
+        throw std::invalid_argument("Cannot compare StringCell with non-StringCell.");
+    }
+
+    const StringCell& otherStr = static_cast<const StringCell&>(other);
+
+    if (str < otherStr.str) return -1;
+    if (str > otherStr.str) return 1;
+    return 0;
+}
+
 ColumnType StringCell::getType() const{
     return ColumnType::String;
 }

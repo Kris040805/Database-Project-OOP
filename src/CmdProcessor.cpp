@@ -131,92 +131,9 @@ void CmdProcessor::cmdPrint(const std::vector<std::string>& args, Database& data
         rows.push_back(&tab.getRow(i));
     }
     printRowsPaged(rows, tab, "Table: " + tabName);
-
-
-    // const size_t rowsPerPage = 10;
-    // size_t currentPage = 0;
-    // size_t totalPages = (tab.getRowCount() + rowsPerPage - 1) / rowsPerPage;
-    // size_t rowCount = tab.getRowCount();
-
-    // std::string input;
-
-    // while (true)
-    // {
-    //     //От интернет
-    //     #ifdef _WIN32
-    //         system("cls");
-    //     #else
-    //         system("clear");
-    //     #endif
-        
-    //     std::cout << "~~~ Table: " << tabName << " | " 
-    //              << "Page: " << (currentPage + 1) << " of " << (totalPages == 0 ? 1 : totalPages) << " ~~~\n\n";
-        
-    //     //Принтиране на имена на колоните
-    //     std::cout << "№ | ";
-    //     for (size_t i = 0; i < tab.getColumnCount(); i++)
-    //     {
-    //         std::cout << tab.getColumnName(i);
-    //         if (i < tab.getColumnCount() - 1)
-    //         {
-    //             std::cout << " | ";
-    //         }
-    //     }
-    //     std::cout << std::endl;
-
-    //     //Принтиране на редовете
-    //     size_t start = currentPage * rowsPerPage;
-    //     size_t end = std::min(start + rowsPerPage, rowCount);
-
-    //     for (size_t i = start; i < end; i++)
-    //     {
-    //         std::cout << i + 1 << ". " << tab.getRow(i).toString() << std::endl;
-    //     }
-    //     std::cout << std::endl;
-        
-    //     while (true)
-    //     {
-    //         std::cout << "[n]ext, [p]revious, [e]xit";
-    //         std::getline(std::cin, input);
-
-    //         if (input == "n" || input == "next")
-    //         {
-    //             if (currentPage < totalPages - 1)
-    //             {
-    //                 currentPage++;
-    //             }
-    //             else
-    //             {
-    //                 std::cout << "You are already on the last page." << std::endl;
-    //             }
-    //             break;
-    //         }
-    //         else if (input == "p" || input == "previous")
-    //         {
-    //             if (currentPage > 0)
-    //             {
-    //                 currentPage--;
-    //             }
-    //             else
-    //             {
-    //                 std::cout << "You are already on the first page." << std::endl;
-    //             }
-    //             break;
-    //         }
-    //         else if (input == "e" || input == "exit")
-    //         {
-    //             return;
-    //         }
-    //         else
-    //         {
-    //             std::cout << "Invalid input. Please enter next, prev or exit." << std::endl;
-    //         }
-    //     }
-    // }
-
 }
 
-void cmdAddColumn(const std::vector<std::string>& args, Database& database){
+void CmdProcessor::cmdAddColumn(const std::vector<std::string>& args, Database& database){
     if (args.size() != 3)
     {
         throw std::invalid_argument("Incorrect arguments for command \"addColumn\".");
@@ -241,6 +158,82 @@ void cmdAddColumn(const std::vector<std::string>& args, Database& database){
     tab.addColumn(colName, colType);
     std::cout << "Column \"" + colName + "\" of type \"" + colTypeStr + "\" added to table \"" + tabName + "\"." << std::endl;
 }
+
+void CmdProcessor::cmdSelect(const std::vector<std::string>& args, Database& database){
+    if (args.size() != 3)
+    {
+        throw std::invalid_argument("Incorrect arguments for command \"select\".");
+    }
+
+    const std::string& searchColStr = args[0];
+    const std::string& searchValue = args[1];
+    const std::string& tabName = args[2];
+    
+    size_t searchColIndex;
+    try
+    {
+        searchColIndex = std::stoul(searchColStr);
+    }
+    catch(...)
+    {
+        throw std::invalid_argument("Invalid column index: \"" + searchColStr + "\".");
+    }
+
+    if (!database.hasTable(tabName))
+    {
+        throw std::invalid_argument("Table \"" + tabName + "\" does not exist.");
+    }
+    const Table& tab = database.getTableByName(tabName);
+    if (searchColIndex >= tab.getColumnCount())
+    {
+        throw std::invalid_argument("Column index out of range.");
+    }
+    
+    const ColumnType searchColType = tab.getColumnType(searchColIndex);
+    Cell* searchCell = createCellFromStr(searchValue);
+    if (searchCell->getType() != ColumnType::Null && searchCell->getType() != searchColType)
+    {
+        delete searchCell;
+        throw std::invalid_argument("Error: value \"" + searchValue + "\" does not match the type of column \"" + tab.getColumnName(searchColIndex) + "\".");
+    }
+
+    std::vector<const Row*> rows;
+    for (size_t i = 0; i < tab.getRowCount(); i++)
+    {
+        const Row& row = tab.getRow(i);
+        bool match = false;
+
+        if (searchCell->getType() == ColumnType::Null)            
+        {
+            match = (row.getCell(searchColIndex)->getType() == ColumnType::Null);
+        } 
+        else 
+        {
+            if (row.getCell(searchColIndex)->getType() != ColumnType::Null &&
+                 row.getCell(searchColIndex)->compare(*searchCell) == 0)
+            {
+                match = true;
+            }
+        } 
+        
+        if (match)
+        {
+            rows.push_back(&row);
+        }
+    }
+    
+    delete searchCell;
+    
+    if (rows.empty())
+    {
+        std::cout << "No rows found matching the criteria." << std::endl;
+        return;
+    }
+
+    printRowsPaged(rows, tab, "Search results for \"" + searchValue + "\" in column \"" + tab.getColumnName(searchColIndex) + "\" of table \"" + tabName + "\".");
+
+}
+
 
 
 

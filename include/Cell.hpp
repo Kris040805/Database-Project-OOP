@@ -9,6 +9,7 @@ class Cell {
     Cell& operator=(const Cell&) = default;
     virtual ~Cell() = default;
 
+    virtual int compare(const Cell& other) const = 0;
     virtual ColumnType getType() const = 0;
     virtual std::string toString() const = 0;
     virtual Cell* clone() const = 0;

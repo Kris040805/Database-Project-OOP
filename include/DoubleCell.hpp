@@ -10,6 +10,7 @@ public:
     DoubleCell(const DoubleCell& other);
     DoubleCell& operator=(const DoubleCell& other);
     
+    int compare(const Cell& other) const override;
     ColumnType getType() const override;
     std::string toString() const override;
     Cell* clone() const override;

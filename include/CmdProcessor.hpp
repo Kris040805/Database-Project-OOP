@@ -15,5 +15,8 @@ private:
     void cmdInsert(const std::vector<std::string>& args, Database& database);
     void cmdPrint(const std::vector<std::string>& args, Database& database);
     void cmdAddColumn(const std::vector<std::string>& args, Database& database);
+    void cmdSelect(const std::vector<std::string>& args, Database& database);
+
+
 
 };
