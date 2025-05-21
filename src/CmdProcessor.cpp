@@ -166,6 +166,7 @@ void CmdProcessor::cmdAddColumn(const std::vector<std::string>& args, Database& 
 }
 
 void CmdProcessor::cmdSelect(const std::vector<std::string>& args, Database& database){
+    // Проверка за правилен брой аргументи
     if (args.size() != 3)
     {
         throw std::invalid_argument("Incorrect arguments for command \"select\".");
@@ -176,6 +177,7 @@ void CmdProcessor::cmdSelect(const std::vector<std::string>& args, Database& dat
     const std::string& tabName = args[2];
     
     size_t searchColIndex;
+    // Проверка за валиден индекс на колоната
     try
     {
         searchColIndex = std::stoul(searchColStr);
@@ -185,6 +187,7 @@ void CmdProcessor::cmdSelect(const std::vector<std::string>& args, Database& dat
         throw std::invalid_argument("Invalid column index: \"" + searchColStr + "\".");
     }
 
+    // Проверка дали таблицата съществува
     if (!database.hasTable(tabName))
     {
         throw std::invalid_argument("Table \"" + tabName + "\" does not exist.");
@@ -195,6 +198,7 @@ void CmdProcessor::cmdSelect(const std::vector<std::string>& args, Database& dat
         throw std::invalid_argument("Column index out of range.");
     }
     
+    // Проверка за валиден тип на колоната
     const ColumnType searchColType = tab.getColumnType(searchColIndex);
     Cell* searchCell = createCellFromStr(searchValue);
     if (searchCell->getType() != ColumnType::Null && searchCell->getType() != searchColType)
@@ -204,6 +208,7 @@ void CmdProcessor::cmdSelect(const std::vector<std::string>& args, Database& dat
     }
 
     std::vector<const Row*> rows;
+    // Търсене на редовете, които отговарят на критериите
     for (size_t i = 0; i < tab.getRowCount(); i++)
     {
         const Row& row = tab.getRow(i);
