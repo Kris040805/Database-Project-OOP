@@ -32,6 +32,10 @@ const Row& Table::getRow(size_t index) const{
     return rows[index];
 }
 
+Row& Table::getRow(size_t index){
+    return rows[index];
+}
+
 size_t Table::getRowCount() const{
     return rows.size();
 }
