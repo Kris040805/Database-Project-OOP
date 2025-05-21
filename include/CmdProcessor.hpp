@@ -17,6 +17,8 @@ private:
     void cmdAddColumn(const std::vector<std::string>& args, Database& database);
     void cmdSelect(const std::vector<std::string>& args, Database& database);
     void cmdUpdate(const std::vector<std::string>& args, Database& database);
+    void cmdDelete(const std::vector<std::string>& args, Database& database);
+    void cmdCount(const std::vector<std::string>& args, Database& database);
 
-
+    
 };

@@ -21,6 +21,7 @@ public:
 
     void addColumn(const std::string& colName, ColumnType colType);
     void insertRow(const Row& row);
+    void deleteRow(size_t index);
     const Row& getRow(size_t index) const;
     Row& getRow(size_t index);
     size_t getRowCount() const;

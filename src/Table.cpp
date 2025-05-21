@@ -28,6 +28,10 @@ void Table::insertRow(const Row& row){
     rows.push_back(row);
 }
 
+void Table::deleteRow(size_t index){
+    rows.erase(rows.begin() + index);
+}
+
 const Row& Table::getRow(size_t index) const{
     return rows[index];
 }

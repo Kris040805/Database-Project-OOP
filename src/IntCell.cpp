@@ -14,8 +14,7 @@ IntCell& IntCell::operator=(const IntCell& other) {
     return *this;
 }
 
-int IntCell::compare(const Cell& other) const
-{
+int IntCell::compare(const Cell& other) const {
     if (other.getType() != ColumnType::Int)
     {
         throw std::invalid_argument("Cannot compare IntCell with non-IntCell.");

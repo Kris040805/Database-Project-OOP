@@ -13,8 +13,7 @@ DoubleCell& DoubleCell::operator=(const DoubleCell& other) {
     return *this;
 }
 
-int DoubleCell::compare(const Cell& other) const
-{
+int DoubleCell::compare(const Cell& other) const{
     if (other.getType() != ColumnType::Double)
     {
         throw std::invalid_argument("Cannot compare DoubleCell with non-DoubleCell.");
