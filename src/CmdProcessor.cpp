@@ -26,6 +26,9 @@ void CmdProcessor::processCommands(const std::string& input, Database& database)
     } else if (cmd == "addcolumn")
     {
         cmdAddColumn(args, database);
+    } else if (cmd == "select")
+    {
+        cmdSelect(args, database);
     } else {
         throw std::invalid_argument("Unknown command:" + cmd);
     }
