@@ -1,4 +1,5 @@
 #include "Row.hpp"
+#include <stdexcept>
 
 Row::Row() {} 
 
@@ -46,6 +47,17 @@ Cell* Row::getCell(size_t index) const {
     }
     
     return nullptr; 
+}
+
+void Row::setCell(size_t index, Cell* cell){
+    if (index >= cells.size())
+    {
+        delete cell;
+        throw std::out_of_range("Cell index out of range in setCell.");
+    }
+
+    delete cells[index];
+    cells[index] = cell;
 }
 
 std::string Row::toString() const {

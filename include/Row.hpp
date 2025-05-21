@@ -14,5 +14,6 @@ public:
 
     void addCell(Cell* cell);
     Cell* getCell(size_t index) const;
+    void setCell(size_t index, Cell* cell); 
     std::string toString() const;
 };
