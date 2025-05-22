@@ -49,3 +49,16 @@ void Database::renameTable(const std::string& oldName, const std::string& newNam
         }
     }
 }
+
+void Database::registerTableFile(const std::string& tabName, const std::string& fileName){
+    tableNameToFileName[tabName] = fileName;
+}
+    
+std::string Database::getFileName(const std::string& tabName) const{
+    auto it = tableNameToFileName.find(tabName);
+    if (it != tableNameToFileName.end())
+    {
+        return it->second;
+    }
+    throw std::invalid_argument("Table \"" + tabName + "\" does not exist");
+}
