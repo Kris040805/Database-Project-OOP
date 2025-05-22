@@ -186,3 +186,47 @@ void printRowsPaged(const std::vector<const Row*>& rows, const Table& tab, const
         }
     }
 }
+
+double getValueFromCell(const Cell* cell){
+    if (cell->getType() == ColumnType::Int)
+    {
+        return static_cast<const IntCell*>(cell)->getValue();
+    } else {
+        return static_cast<const DoubleCell*>(cell)->getValue();
+    }
+}
+
+double aggregateSum(const std::vector<const Cell*>& cells){
+    double sum = 0.0;
+    for (const Cell* cell : cells){
+        sum += getValueFromCell(cell);
+    }
+    return sum;
+}
+
+double aggregateProduct(const std::vector<const Cell*>& cells){
+    double prod = 1.0;
+    for (const Cell* cell : cells){
+        prod *= getValueFromCell(cell);
+    }
+    return prod;
+}
+
+double aggregateMin(const std::vector<const Cell*>& cells){
+    double min = getValueFromCell(cells[0]);
+    for (size_t i = 1; i < cells.size(); i++)
+    {
+        min = std::min(min, getValueFromCell(cells[i]));
+    }
+    return min;
+}
+
+double aggregateMax(const std::vector<const Cell*>& cells){
+    double max = getValueFromCell(cells[0]);
+    for (size_t i = 1; i < cells.size(); i++)
+    {
+        max = std::max(max, getValueFromCell(cells[i]));
+    }
+    return max;
+}
+
