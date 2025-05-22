@@ -47,6 +47,9 @@ void CmdProcessor::processCommands(const std::string& input, Database& database)
     } else if (cmd == "showtables")
     {
         cmdShowTables(args, database);  
+    } else if (cmd == "rename")
+    {
+        cmdRename(args, database);  
     } else {
         throw std::invalid_argument("Unknown command:" + cmd);
     }
@@ -649,6 +652,29 @@ void CmdProcessor::cmdShowTables(const std::vector<std::string>& args, Database&
     {
         std::cout << "- " << tableName << std::endl;
     }
+}
+
+void cmdRename(const std::vector<std::string>& args, Database& database){
+    if (args.size() != 2)
+    {
+        throw std::invalid_argument("Incorrect arguments for command \"rename\".");
+    }
+    
+    const std::string& oldName = args[0];
+    const std::string& newName = args[1];
+
+    if (!database.hasTable(oldName))
+    {
+        throw std::invalid_argument("Table \"" + oldName + "\" does not exist.");
+    }
+
+    if (database.hasTable(newName))
+    {
+        throw std::invalid_argument("Table \"" + newName + "\" already exists.");
+    }
+
+    database.renameTable(oldName, newName);
+    std::cout << "Table \"" + oldName + "\" renamed to \"" + newName + "\"." << std::endl;
 }
 
 

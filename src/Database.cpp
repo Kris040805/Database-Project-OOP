@@ -38,3 +38,14 @@ std::vector<std::string> Database::listTableNames() const {
     }
     return result;
 }
+
+void Database::renameTable(const std::string& oldName, const std::string& newName){
+    for (Table& tab : tables)
+    {
+        if (tab.getName() == oldName)
+        {
+            tab.setName(newName);
+            return;
+        }
+    }
+}

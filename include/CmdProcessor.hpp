@@ -22,6 +22,8 @@ private:
     void cmdAggregate(const std::vector<std::string>& args, Database& database);
     void cmdDescribe(const std::vector<std::string>& args, Database& database);
     void cmdShowTables(const std::vector<std::string>& args, Database& database);
+    void cmdRename(const std::vector<std::string>& args, Database& database);
 
+    
 
 };

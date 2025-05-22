@@ -12,4 +12,6 @@ public:
     Table& getTableByName(const std::string& name);
     bool hasTable(const std::string& name) const;
     std::vector<std::string> listTableNames() const;
+    void renameTable(const std::string& oldName, const std::string& newName);
+    
 };
