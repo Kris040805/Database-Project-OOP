@@ -654,7 +654,7 @@ void CmdProcessor::cmdShowTables(const std::vector<std::string>& args, Database&
     }
 }
 
-void cmdRename(const std::vector<std::string>& args, Database& database){
+void CmdProcessor::cmdRename(const std::vector<std::string>& args, Database& database){
     if (args.size() != 2)
     {
         throw std::invalid_argument("Incorrect arguments for command \"rename\".");
