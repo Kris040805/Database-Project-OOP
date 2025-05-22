@@ -19,3 +19,4 @@ double aggregateProduct(const std::vector<const Cell*>& cells);
 double aggregateMin(const std::vector<const Cell*>& cells);
 double aggregateMax(const std::vector<const Cell*>& cells);
 
+std::vector<std::string> parseCSVLine(const std::string& line);

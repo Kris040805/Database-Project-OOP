@@ -230,3 +230,29 @@ double aggregateMax(const std::vector<const Cell*>& cells){
     return max;
 }
 
+std::vector<std::string> parseCSVLine(const std::string& line){
+    std::vector<std::string> result;
+    std::string current;
+    bool inQuotes = false;
+
+    for (size_t i = 0; i < line.size(); ++i) {
+        char ch = line[i];
+
+        if (ch == '"') {
+            if (inQuotes && i + 1 < line.size() && line[i + 1] == '"') {
+                current += '"';
+                ++i;
+            } else {
+                inQuotes = !inQuotes;
+            }
+        } else if (ch == ',' && !inQuotes) {
+            result.push_back(current);
+            current.clear();
+        } else {
+            current += ch;
+        }
+    }
+
+    result.push_back(current);
+    return result;
+}
