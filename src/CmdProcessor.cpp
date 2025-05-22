@@ -486,7 +486,21 @@ void CmdProcessor::cmdCount(const std::vector<std::string>& args, Database& data
     std::cout << "Count of rows matching \"" + searchValue + "\" in column \"" + tab.getColumnName(searchColIndex) + "\" of table \"" + tabName + "\": " << matchesCount << std::endl;
 }
 
+void CmdProcessor::cmdAggregate(const std::vector<std::string>& args, Database& database){
+    
+    
+    //aggregate <table name> <search column n> <search value> <target column n> <operation>
 
+
+
+
+
+
+
+
+    
+
+}
 
 
 

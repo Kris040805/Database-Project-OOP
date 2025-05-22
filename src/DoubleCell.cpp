@@ -13,6 +13,10 @@ DoubleCell& DoubleCell::operator=(const DoubleCell& other) {
     return *this;
 }
 
+double DoubleCell::getValue() const {
+    return value;
+}
+
 int DoubleCell::compare(const Cell& other) const{
     if (other.getType() != ColumnType::Double)
     {

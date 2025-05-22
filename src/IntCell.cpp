@@ -14,6 +14,10 @@ IntCell& IntCell::operator=(const IntCell& other) {
     return *this;
 }
 
+int IntCell::getValue() const {
+    return value;
+}
+
 int IntCell::compare(const Cell& other) const {
     if (other.getType() != ColumnType::Int)
     {

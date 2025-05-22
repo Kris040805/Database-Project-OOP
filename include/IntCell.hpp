@@ -11,6 +11,7 @@ public:
     IntCell(const IntCell& other);
 
     int compare(const Cell& other) const override;
+    int getValue() const;
     ColumnType getType() const override;
     std::string toString() const override;
     Cell* clone() const override;
