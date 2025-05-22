@@ -20,5 +20,8 @@ private:
     void cmdDelete(const std::vector<std::string>& args, Database& database);
     void cmdCount(const std::vector<std::string>& args, Database& database);
     void cmdAggregate(const std::vector<std::string>& args, Database& database);
-    
+    void cmdDescribe(const std::vector<std::string>& args, Database& database);
+
+
+
 };
