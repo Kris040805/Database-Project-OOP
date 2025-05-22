@@ -38,9 +38,10 @@ void CmdProcessor::processCommands(const std::string& input, Database& database)
     } else if (cmd == "count")
     {
         cmdCount(args, database);
-    }
-     
-    else {
+    } else if (cmd == "aggregate")
+    {
+        cmdAggregate(args, database);
+    } else {
         throw std::invalid_argument("Unknown command:" + cmd);
     }
 
