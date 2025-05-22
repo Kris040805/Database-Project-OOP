@@ -44,6 +44,9 @@ void CmdProcessor::processCommands(const std::string& input, Database& database)
     } else if (cmd == "describe")
     {
         cmdDescribe(args, database);  
+    } else if (cmd == "showtables")
+    {
+        cmdShowTables(args, database);  
     } else {
         throw std::invalid_argument("Unknown command:" + cmd);
     }
@@ -628,5 +631,24 @@ void CmdProcessor::cmdDescribe(const std::vector<std::string>& args, Database& d
     }
 }
 
+void CmdProcessor::cmdShowTables(const std::vector<std::string>& args, Database& database){
+    if (args.size() != 0)
+    {
+        throw std::invalid_argument("Incorrect arguments for command \"showtables\".");
+    }
+
+    std::vector<std::string> tableNames = database.listTableNames();
+    if (tableNames.empty())
+    {
+        std::cout << "No tables in the database." << std::endl;
+        return;
+    }
+    
+    std::cout << "Tables in the database:" << std::endl;
+    for (const std::string& tableName : tableNames)
+    {
+        std::cout << "- " << tableName << std::endl;
+    }
+}
 
 
