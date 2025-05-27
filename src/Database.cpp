@@ -50,6 +50,10 @@ void Database::renameTable(const std::string& oldName, const std::string& newNam
     }
 }
 
+void Database::unregisterTableFile(const std::string& tabName){
+    tableNameToFileName.erase(tabName);
+}
+
 void Database::registerTableFile(const std::string& tabName, const std::string& fileName){
     tableNameToFileName[tabName] = fileName;
 }

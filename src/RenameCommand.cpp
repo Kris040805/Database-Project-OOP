@@ -23,7 +23,23 @@ void RenameCommand::execute(const std::vector<std::string>& args, Database& data
         throw std::invalid_argument("Table \"" + newName + "\" already exists.");
     }
 
+
+    std::string fileName;
+    bool hasFile = false;
+    try {
+        fileName = database.getFileName(oldName);
+        hasFile = true;
+    } catch (...) {
+        // Таблицата няма файл
+    }
+
     database.renameTable(oldName, newName);
+
+    if (hasFile) {
+        database.unregisterTableFile(oldName);
+        database.registerTableFile(newName, fileName);
+    }
+
     std::cout << "Table \"" + oldName + "\" renamed to \"" + newName + "\"." << std::endl;
 
 }

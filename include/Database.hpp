@@ -16,6 +16,7 @@ public:
     std::vector<std::string> listTableNames() const;
     void renameTable(const std::string& oldName, const std::string& newName);
 
+    void unregisterTableFile(const std::string& tabName);
     void registerTableFile(const std::string& tabName, const std::string& fileName);
     std::string getFileName(const std::string& tabName) const;
 };
