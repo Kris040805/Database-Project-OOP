@@ -2,6 +2,7 @@
 #include "Utilities.hpp"
 #include <stdexcept>
 #include <iostream>
+#include <vector>
 
 void InsertCommand::execute(const std::vector<std::string>& args, Database& database) {
     if (args.empty())
