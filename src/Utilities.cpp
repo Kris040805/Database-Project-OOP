@@ -190,9 +190,9 @@ void printRowsPaged(const std::vector<const Row*>& rows, const Table& tab, const
 double getValueFromCell(const Cell* cell){
     if (cell->getType() == ColumnType::Int)
     {
-        return static_cast<const IntCell*>(cell)->getValue();
+        return dynamic_cast<const IntCell*>(cell)->getValue();
     } else {
-        return static_cast<const DoubleCell*>(cell)->getValue();
+        return dynamic_cast<const DoubleCell*>(cell)->getValue();
     }
 }
 

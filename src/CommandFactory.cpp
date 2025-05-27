@@ -10,6 +10,10 @@
 #include "SelectCommand.hpp"
 #include "ShowTablesCommand.hpp"
 #include "UpdateCommand.hpp"
+#include "ImportCommand.hpp"
+
+
+
 
 Command* CommandFactory::createCommand(const std::string& commandName) const {
     if (commandName == "addcolumn") {
@@ -34,6 +38,8 @@ Command* CommandFactory::createCommand(const std::string& commandName) const {
         return new ShowTablesCommand();
     } else if (commandName == "update") {
         return new UpdateCommand();
+    } else if (commandName == "import") {
+        return new ImportCommand();
     }
     
     return nullptr;
