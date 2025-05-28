@@ -12,7 +12,7 @@
 #include "UpdateCommand.hpp"
 #include "ImportCommand.hpp"
 #include "InnerJoinCommand.hpp"
-
+#include "ExportCommand.hpp"
 
 
 
@@ -43,6 +43,8 @@ Command* CommandFactory::createCommand(const std::string& commandName) const {
         return new ImportCommand();
     } else if (commandName == "innerjoin") {
         return new InnerJoinCommand();
+    } else if (commandName == "export") {
+        return new ExportCommand();
     }
     
     return nullptr;
