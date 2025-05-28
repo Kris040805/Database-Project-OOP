@@ -11,6 +11,7 @@
 #include "ShowTablesCommand.hpp"
 #include "UpdateCommand.hpp"
 #include "ImportCommand.hpp"
+#include "InnerJoinCommand.hpp"
 
 
 
@@ -40,6 +41,8 @@ Command* CommandFactory::createCommand(const std::string& commandName) const {
         return new UpdateCommand();
     } else if (commandName == "import") {
         return new ImportCommand();
+    } else if (commandName == "innerjoin") {
+        return new InnerJoinCommand();
     }
     
     return nullptr;
