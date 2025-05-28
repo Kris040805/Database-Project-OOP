@@ -1,5 +1,10 @@
-#include "ExportCommand.hpp"
-#include "Database.hpp"
+#include "../include/ExportCommand.hpp"
+#include "../include/Database.hpp"
+#include "../include/Table.hpp"
+#include "../include/Row.hpp"
+#include "../include/Cell.hpp"
+#include "../include/ColumnType.hpp"
+#include "../include/Utilities.hpp"
 #include <vector>
 #include <stdexcept>
 #include <fstream>

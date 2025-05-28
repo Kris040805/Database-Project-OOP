@@ -1,4 +1,4 @@
-#include "ColumnType.hpp"
+#include "../include/ColumnType.hpp"
 
 ColumnType parseColType(const std::string& strType){
     if (strType == "Int") return ColumnType::Int;

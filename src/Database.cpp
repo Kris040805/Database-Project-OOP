@@ -1,4 +1,8 @@
-#include "Database.hpp"
+#include "../include/Database.hpp"
+#include "../include/Table.hpp"
+#include "../include/Utilities.hpp"
+#include <vector>
+#include <string>
 #include <stdexcept>
 
 void Database::addTable(const Table& table){

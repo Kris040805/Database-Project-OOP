@@ -1,5 +1,7 @@
 #include <iostream>
-#include "DoubleCell.hpp"
+#include "../include/DoubleCell.hpp"
+#include "../include/Cell.hpp"
+#include "../include/ColumnType.hpp"
 #include <string>
 
 DoubleCell::DoubleCell(double value) : value(value) {}

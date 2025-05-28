@@ -1,5 +1,7 @@
 #include <iostream>
-#include "StringCell.hpp"
+#include "../include/StringCell.hpp"
+#include "../include/Cell.hpp"
+#include "../include/ColumnType.hpp"
 #include <string>
 
 StringCell::StringCell(const std::string& str) : str(str) {}

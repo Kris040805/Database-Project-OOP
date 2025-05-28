@@ -1,6 +1,6 @@
-#include "CmdProcessor.hpp"
-#include "Utilities.hpp"
-#include "CommandFactory.hpp"
+#include "../include/CmdProcessor.hpp"
+#include "../include/Utilities.hpp"
+#include "../include/CommandFactory.hpp"
 #include <iostream>
 #include <stdexcept>
 #include <vector>

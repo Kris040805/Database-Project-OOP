@@ -1,5 +1,11 @@
-#include "ImportCommand.hpp"
-#include "Utilities.hpp"
+#include "../include/ImportCommand.hpp"
+#include "../include/Utilities.hpp"
+#include "../include/Database.hpp"
+#include "../include/Command.hpp"
+#include "../include/Table.hpp"
+#include "../include/Row.hpp"
+#include "../include/Cell.hpp"
+#include "../include/ColumnType.hpp"
 #include <fstream>
 #include <sstream>
 #include <iostream>

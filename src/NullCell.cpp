@@ -1,5 +1,8 @@
 #include <iostream>
-#include "NullCell.hpp"
+#include "../include/NullCell.hpp"
+#include "../include/Cell.hpp"
+#include "../include/ColumnType.hpp"
+#include <stdexcept>
 #include <string>
 
 int NullCell::compare(const Cell& other) const{

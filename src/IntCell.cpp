@@ -1,5 +1,6 @@
 #include <iostream>
-#include "IntCell.hpp"
+#include "../include/IntCell.hpp"
+#include "../include/ColumnType.hpp"
 #include <string>
 
 

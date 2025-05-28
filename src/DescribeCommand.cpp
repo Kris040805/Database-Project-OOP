@@ -1,5 +1,8 @@
-#include "DescribeCommand.hpp"
-#include "Utilities.hpp"
+#include "../include/DescribeCommand.hpp"
+#include "../include/Utilities.hpp"
+#include "../include/Database.hpp"
+#include "../include/Command.hpp"
+#include "../include/Table.hpp"
 #include <stdexcept>
 #include <iostream>
 #include <vector>

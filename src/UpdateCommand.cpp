@@ -1,5 +1,10 @@
-#include "UpdateCommand.hpp"
-#include "Utilities.hpp"
+#include "../include/UpdateCommand.hpp"
+#include "../include/Utilities.hpp"
+#include "../include/Database.hpp"
+#include "../include/Command.hpp"
+#include "../include/Table.hpp"
+#include "../include/Row.hpp"
+#include "../include/Cell.hpp"
 #include <stdexcept>
 #include <iostream>
 #include <vector>

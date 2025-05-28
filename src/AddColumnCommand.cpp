@@ -1,5 +1,5 @@
-#include "AddColumnCommand.hpp"
-#include "Utilities.hpp"
+#include "../include/AddColumnCommand.hpp"
+#include "../include/Utilities.hpp"
 #include <stdexcept>
 #include <iostream>
 #include <vector>

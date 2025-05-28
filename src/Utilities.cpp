@@ -1,10 +1,10 @@
-#include "Utilities.hpp"
-#include "IntCell.hpp"
-#include "DoubleCell.hpp"
-#include "StringCell.hpp"
-#include "NullCell.hpp"
-#include "Row.hpp"
-#include "Table.hpp"
+#include "../include/Utilities.hpp"
+#include "../include/IntCell.hpp"
+#include "../include/DoubleCell.hpp"
+#include "../include/StringCell.hpp"
+#include "../include/NullCell.hpp"
+#include "../include/Row.hpp"
+#include "../include/Table.hpp"
 #include <cctype>
 #include <vector>
 #include <iostream>
@@ -125,7 +125,7 @@ void printRowsPaged(const std::vector<const Row*>& rows, const Table& tab, const
                   << " of " << (totalPages == 0 ? 1 : totalPages) << " ~~~\n\n";
         
         //Принтиране на имена на колоните
-        std::cout << "№ | ";
+        std::cout << "# | ";
         for (size_t i = 0; i < tab.getColumnCount(); i++)
         {
             std::cout << tab.getColumnName(i);
@@ -148,7 +148,7 @@ void printRowsPaged(const std::vector<const Row*>& rows, const Table& tab, const
         
         while (true)
         {
-            std::cout << "[n]ext, [p]revious, [e]xit";
+            std::cout << "[n]ext, [p]revious, [e]xit" << std::endl;
             std::getline(std::cin, input);
 
             if (input == "n" || input == "next")

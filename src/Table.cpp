@@ -1,4 +1,11 @@
-#include "Table.hpp"
+#include "../include/Table.hpp"
+#include "../include/Row.hpp"
+#include "../include/Cell.hpp"
+#include "../include/ColumnType.hpp"
+#include "../include/NullCell.hpp"
+#include "../include/Utilities.hpp"
+#include <vector>
+#include <string>
 #include <stdexcept>
 
 Table::Table() {}

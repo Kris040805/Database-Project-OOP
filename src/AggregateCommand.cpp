@@ -1,5 +1,7 @@
-#include "AggregateCommand.hpp"
-#include "Utilities.hpp"
+#include "../include/AggregateCommand.hpp"
+#include "../include/Database.hpp"
+#include "../include/Command.hpp"
+#include "../include/Utilities.hpp"
 #include <stdexcept>
 #include <iostream>
 #include <vector>

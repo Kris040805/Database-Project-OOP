@@ -1,4 +1,8 @@
-#include "Row.hpp"
+#include "../include/Row.hpp"
+#include "../include/Cell.hpp"
+#include "../include/ColumnType.hpp"
+#include <vector>
+#include <string>
 #include <stdexcept>
 
 Row::Row() {} 

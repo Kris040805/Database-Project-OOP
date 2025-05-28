@@ -1,5 +1,5 @@
-#include "CountCommand.hpp"
-#include "Utilities.hpp"
+#include "../include/CountCommand.hpp"
+#include "../include/Utilities.hpp"
 #include <stdexcept>
 #include <iostream>
 #include <vector>

@@ -1,6 +1,8 @@
 #pragma once
 #include "Cell.hpp"
 #include <string>
+#include "Table.hpp"
+#include "Row.hpp"
 #include <vector>
 
 bool isInteger(const std::string& str);
