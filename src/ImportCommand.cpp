@@ -73,7 +73,7 @@ void ImportCommand::execute(const std::vector<std::string>& args, Database& data
         {
             Cell* cell = createCellFromStr(rowValues[i]);
             ColumnType expectedType = newTable.getColumnType(i);
-            if (cell->getType() != expectedType && expectedType != ColumnType::Null) {
+            if (cell->getType() != expectedType && cell->getType() != ColumnType::Null) {
                 delete cell;
                 throw std::invalid_argument("Cell type does not match expected type for column " + newTable.getColumnName(i) + ": " + rowValues[i]);
             }
