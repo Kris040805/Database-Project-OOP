@@ -239,11 +239,16 @@ std::vector<std::string> parseCSVLine(const std::string& line){
         char ch = line[i];
 
         if (ch == '"') {
+            if (inQuotes && current.size() == 0)
+            {
+                current += '"';
+            }
             if (inQuotes && i + 1 < line.size() && line[i + 1] == '"') {
                 current += '"';
                 ++i;
             } else {
                 inQuotes = !inQuotes;
+                current += '"';
             }
         } else if (ch == ',' && !inQuotes) {
             result.push_back(current);

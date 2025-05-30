@@ -52,38 +52,28 @@ void ExportCommand::execute(const std::vector<std::string>& args, Database& data
     file << "\n";
 
     // Данни
-    for (size_t i = 0; i < table.getRowCount(); i++)
-    {
+    for (size_t i = 0; i < table.getRowCount(); i++) {
         const Row& row = table.getRow(i);
-        for (size_t j = 0; j < table.getColumnCount(); j++)
-        {
-            std::string cellValue = row.getCell(j)->toString();
+        for (size_t j = 0; j < table.getColumnCount(); j++) {
+            const Cell* cell = row.getCell(j);
+            std::string cellValue = cell->toString();
 
-            bool quotes = (cellValue.find(',') != std::string::npos || cellValue.find('"') != std::string::npos);
-            if (quotes)
-            {
+            if (cell->getType() == ColumnType::String) {
                 file << '"';
-                for (char c : cellValue) 
-                {
-                    if (c == '"')
-                    {
-                        file << "\"\"";
-                    } else {
-                        file << c;
-                    }
+                for (char c : cellValue) {
+                    if (c == '"') file << "\"\"";
+                    else file << c;
                 }
                 file << '"';
             } else {
                 file << cellValue;
             }
-            
-            if (j < table.getColumnCount() - 1)
-            {
-                file << ",";
-            }
+
+            if (j < table.getColumnCount() - 1) file << ",";
         }
         file << "\n";
     }
+
     file.close();
     std::cout << "Table \"" << tabName << "\" exported to file: " << fileName << std::endl;
 }
