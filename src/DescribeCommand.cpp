@@ -31,6 +31,6 @@ void DescribeCommand::execute(const std::vector<std::string>& args, Database& da
     std::cout << "Table \"" + tabName + "\" description:" << std::endl;
     for (size_t i = 0; i < tab.getColumnCount(); i++)
     {
-        std::cout << i << tab.getColumnName(i) << ": " << colTypeToString(tab.getColumnType(i)) << std::endl;
+        std::cout << i << ". " << tab.getColumnName(i) << ": " << colTypeToString(tab.getColumnType(i)) << std::endl;
     }
 }
