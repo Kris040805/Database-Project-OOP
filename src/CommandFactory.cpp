@@ -1,3 +1,4 @@
+#include "include\CloseCommand.hpp"
 #include "../include/CommandFactory.hpp"
 #include "../include/AddColumnCommand.hpp"
 #include "../include/AggregateCommand.hpp"
@@ -14,7 +15,7 @@
 #include "../include/InnerJoinCommand.hpp"
 #include "../include/ExportCommand.hpp"
 #include "../include/OpenCommand.hpp"
-
+#include "../include/CloseCommand.hpp"
 
 
 
@@ -49,7 +50,10 @@ Command* CommandFactory::createCommand(const std::string& commandName) const {
         return new ExportCommand();
     } else if (commandName == "open") {
         return new OpenCommand();
+    } else if (commandName == "close") {
+        return new CloseCommand();
     }
+    
     
     return nullptr;
 }
