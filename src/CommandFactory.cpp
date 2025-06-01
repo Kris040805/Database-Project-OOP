@@ -19,7 +19,7 @@
 #include "../include/HelpCommand.hpp"
 #include "../include/ExitCommand.hpp"
 #include "../include/SaveCommand.hpp"
-
+#include "../include/SaveasCommand.hpp"
 
 
 Command* CommandFactory::createCommand(const std::string& commandName) const {
@@ -61,7 +61,9 @@ Command* CommandFactory::createCommand(const std::string& commandName) const {
         return new ExitCommand();
     } else if (commandName == "save") {
         return new SaveCommand();
-    } 
+    } else if (commandName == "saveas") {
+        return new SaveasCommand();
+    }
     
     
     return nullptr;
