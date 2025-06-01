@@ -16,6 +16,7 @@
 #include "../include/ExportCommand.hpp"
 #include "../include/OpenCommand.hpp"
 #include "../include/CloseCommand.hpp"
+#include "../include/HelpCommand.hpp"
 
 
 
@@ -52,6 +53,8 @@ Command* CommandFactory::createCommand(const std::string& commandName) const {
         return new OpenCommand();
     } else if (commandName == "close") {
         return new CloseCommand();
+    } else if (commandName == "help") {
+        return new HelpCommand();
     }
     
     
