@@ -13,6 +13,8 @@
 #include "../include/ImportCommand.hpp"
 #include "../include/InnerJoinCommand.hpp"
 #include "../include/ExportCommand.hpp"
+#include "../include/OpenCommand.hpp"
+
 
 
 
@@ -45,6 +47,8 @@ Command* CommandFactory::createCommand(const std::string& commandName) const {
         return new InnerJoinCommand();
     } else if (commandName == "export") {
         return new ExportCommand();
+    } else if (commandName == "open") {
+        return new OpenCommand();
     }
     
     return nullptr;

@@ -16,7 +16,7 @@ int main() {
     while (true)
     {
         std::string input;
-        std::cout << "Enter command: ";
+        std::cout << "> ";
         std::getline(std::cin, input);
 
         try
