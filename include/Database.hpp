@@ -8,6 +8,7 @@ class Database {
 private:
     std::vector<Table> tables;
     std::unordered_map<std::string, std::string> tableNameToFileName;
+    std::string catalogFileName;
 
 public:
     void addTable(const Table& table);
@@ -15,6 +16,9 @@ public:
     bool hasTable(const std::string& name) const;
     std::vector<std::string> listTableNames() const;
     void renameTable(const std::string& oldName, const std::string& newName);
+
+    void setCatalogFileName(const std::string& fileName);
+    const std::string& getCatalogFileName() const;
 
     void unregisterTableFile(const std::string& tabName);
     void registerTableFile(const std::string& tabName, const std::string& fileName);

@@ -21,6 +21,7 @@ void OpenCommand::execute(const std::vector<std::string>& args, Database& databa
             throw std::runtime_error("Failed to create file: " + catalogFile);
         }
         newFile.close();
+        database.setCatalogFileName(catalogFile);
         std::cout << "Successfully created and opened " << catalogFile << std::endl;
         return;
     }
@@ -52,5 +53,6 @@ void OpenCommand::execute(const std::vector<std::string>& args, Database& databa
         }
     }
     file.close();
+    database.setCatalogFileName(catalogFile);
     std::cout << "Successfully opened catalog file: " << catalogFile << std::endl;
 }

@@ -34,6 +34,14 @@ bool Database::hasTable(const std::string& name) const {
     return false;
 }
 
+void Database::setCatalogFileName(const std::string& fileName){
+    catalogFileName = fileName;
+}
+    
+const std::string& Database::getCatalogFileName() const{
+    return catalogFileName;
+}
+
 std::vector<std::string> Database::listTableNames() const {
     std::vector<std::string> result;
     for (const Table& tab : tables)

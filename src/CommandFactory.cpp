@@ -18,6 +18,7 @@
 #include "../include/CloseCommand.hpp"
 #include "../include/HelpCommand.hpp"
 #include "../include/ExitCommand.hpp"
+#include "../include/SaveCommand.hpp"
 
 
 
@@ -58,7 +59,9 @@ Command* CommandFactory::createCommand(const std::string& commandName) const {
         return new HelpCommand();
     } else if (commandName == "exit") {
         return new ExitCommand();
-    }
+    } else if (commandName == "save") {
+        return new SaveCommand();
+    } 
     
     
     return nullptr;
