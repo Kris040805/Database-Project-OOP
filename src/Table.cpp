@@ -22,6 +22,14 @@ const std::string& Table::getName() const{
 
 
 void Table::addColumn(const std::string& colName, ColumnType colType){
+    for (const std::string& colname : columnNames)
+    {
+        if (colname == colName)
+        {
+            throw std::invalid_argument("Column \"" + colName + "\" already exists in table \"" + name + "\".");
+        }
+    }
+    
     columnNames.push_back(colName);
     columnTypes.push_back(colType);
 

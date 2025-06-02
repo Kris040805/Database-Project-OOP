@@ -1,7 +1,8 @@
 #pragma once
-#include "Row.hpp"
-#include "ColumnType.hpp"
+#include "Cell.hpp"
 #include "NullCell.hpp"
+#include "ColumnType.hpp"
+#include "Row.hpp"
 #include <vector>
 #include <string>
 

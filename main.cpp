@@ -1,8 +1,8 @@
-#include "../include/Database.hpp"
-#include "../include/Table.hpp"
-#include "../include/Utilities.hpp"
-#include "../include/CommandFactory.hpp"
-#include "../include/CmdProcessor.hpp"
+#include "include/Database.hpp"
+#include "include/Table.hpp"
+#include "include/Utilities.hpp"
+#include "include/CommandFactory.hpp"
+#include "include/CmdProcessor.hpp"
 #include <iostream>
 
 
