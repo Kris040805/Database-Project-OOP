@@ -1,4 +1,3 @@
-#include "include\CloseCommand.hpp"
 #include "../include/CommandFactory.hpp"
 #include "../include/AddColumnCommand.hpp"
 #include "../include/AggregateCommand.hpp"

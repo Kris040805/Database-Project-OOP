@@ -12,5 +12,5 @@ void CloseCommand::execute(const std::vector<std::string>& args, Database& datab
 
     database = Database();
 
-    std::cout << "Database closed successfully." << std::endl;
+    std::cout << "Successfully closed " << database.getCatalogFileName() << std::endl;
 }

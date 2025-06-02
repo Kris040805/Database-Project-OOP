@@ -47,6 +47,6 @@ void InsertCommand::execute(const std::vector<std::string>& args, Database& data
     }
 
     tab.insertRow(row);
-    std::cout << "The row is added successfully into table\"" + tabName + "\".\n" << std::endl;
+    std::cout << "The row is added successfully into table \"" + tabName + "\".\n" << std::endl;
     
 }

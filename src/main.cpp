@@ -12,15 +12,20 @@ int main() {
     bool isOpen = false;
     Database database;
     CmdProcessor cmdProcessor;
+
     while (true)
     {
         std::string input;
         std::cout << "> ";
         std::getline(std::cin, input);
 
+        if (input.empty()) {
+            continue;
+        }
+
         std::string cmd = input.substr(0, input.find(' '));
 
-        if (!isOpen && cmd != "open") {
+        if (!isOpen && cmd != "open" && cmd != "exit" && cmd != "help") {
             std::cout << "Database is not open. Please open a database first." << std::endl;
             continue;
         }  

@@ -13,7 +13,7 @@ void HelpCommand::execute(const std::vector<std::string>& args, Database& databa
     std::cout << "open <file>\t\topens <file>\n";
     std::cout << "close\t\t\tcloses currently opened file\n";
     std::cout << "save\t\t\tsaves the currently open file\n";
-    std::cout << "saveas <file>\tsaves the currently open file in <file>\n";
+    std::cout << "saveas <file>\t\tsaves the currently open file in <file>\n";
     std::cout << "help\t\t\tprints this information\n";
     std::cout << "exit\t\t\texits the program\n";
 }

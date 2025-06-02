@@ -66,12 +66,12 @@ void InnerJoinCommand::execute(const std::vector<std::string>& args, Database& d
     }
         
     // join
-    for (size_t i = 0; i < t1.getColumnCount(); i++)
+    for (size_t i = 0; i < t1.getRowCount(); i++)
     {
         const Row& row1 = t1.getRow(i);
         const Cell* cell1 = row1.getCell(col1);
 
-        for (size_t j = 0; j < t2.getColumnCount(); j++)
+        for (size_t j = 0; j < t2.getRowCount(); j++)
         {
             const Row& row2 = t2.getRow(j);
             const Cell* cell2 = row2.getCell(col2);
@@ -98,6 +98,8 @@ void InnerJoinCommand::execute(const std::vector<std::string>& args, Database& d
     }
     
     database.addTable(joinedTable);
+    std::string joinedFileName = joinedTableName + ".csv";
+    database.registerTableFile(joinedTableName, joinedFileName);
     std::cout << "Inner join completed. New table: " << joinedTableName << std::endl;
 }
 
