@@ -21,7 +21,7 @@ void SaveCommand::execute(const std::vector<std::string>& args, Database& databa
     // Записване на каталога
     std::ofstream catalogFile(catalogFileName);
     if (!catalogFile.is_open()) {
-        throw std::runtime_error("Failed to open the catalog file for writing: " + catalogFileName);
+        throw std::invalid_argument("Failed to open the catalog file for writing: " + catalogFileName);
     }
 
     std::vector<std::string> tableNames = database.listTableNames();
