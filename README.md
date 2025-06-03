@@ -7,4 +7,6 @@
 - `open`, `save`, `saveas`, `close`, `insert`, `print`, `select`, `update` и др.
 
 
-GitHub repo: https://github.com/Kris040805/Database-Project-OOP.git
+GitHub хранилище: https://github.com/Kris040805/Database-Project-OOP.git
+
+Документация: docs -> html -> index.html
