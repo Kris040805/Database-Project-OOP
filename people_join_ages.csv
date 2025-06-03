@@ -1,0 +1,9 @@
+people_join_ages
+name,city,age
+String,String,Int
+"Ivan","Sofia",25
+"Simona","Plovdiv",19
+"Nikolay","Haskovo",21
+"Petya","Plovdiv",24
+"Kristiyan","Berlin",19
+"Kristiyan","Berlin",25

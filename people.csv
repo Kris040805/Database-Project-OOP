@@ -1,0 +1,8 @@
+people
+name,city
+String,String
+"Ivan","Sofia"
+"Simona","Plovdiv"
+"Nikolay","Haskovo"
+"Petya","Plovdiv"
+"Kristiyan","Berlin"

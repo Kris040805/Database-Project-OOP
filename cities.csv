@@ -1,0 +1,8 @@
+cities
+city,country
+String,String
+"Haskovo","Bulgaria"
+"Berlin","Germany"
+"Sofia","Bulgaria"
+"Plovdiv","Bulgaria"
+"Sunny beach","Bulgaria"

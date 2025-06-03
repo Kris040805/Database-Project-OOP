@@ -20,4 +20,5 @@ GitHub хранилище: https://github.com/Kris040805/Database-Project-OOP.gi
 - Tестовете:
 - - компилираш с: g++ -std=c++17 -I./include -I./external tests/(....).cpp src/*.cpp -o tests
 - - стартираш с: ./tests
+
 На (....) слагаш името на файла с тестове които искаш да пуснеш.

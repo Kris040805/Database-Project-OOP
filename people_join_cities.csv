@@ -1,0 +1,8 @@
+people_join_cities
+name,city,country
+String,String,String
+"Ivan","Sofia","Bulgaria"
+"Simona","Plovdiv","Bulgaria"
+"Nikolay","Haskovo","Bulgaria"
+"Petya","Plovdiv","Bulgaria"
+"Kristiyan","Berlin","Germany"
