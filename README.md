@@ -8,8 +8,3 @@
 
 
 GitHub repo: https://github.com/Kris040805/Database-Project-OOP.git
-
-
-Documentation: file:///G:/Uni/2.%20Second%20semester/OOP/Lekcii/KursovProekt/DatabaseProject/docs/html/index.html
-
-
